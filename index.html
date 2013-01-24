@@ -46,7 +46,7 @@ function scan() {
 
 window.plugins.barcodeScanner.scan(function(result) {
 
-alert("Skaner kodów\n" +
+alert("Skanowano\n" +
 
 "Wynik: " + result.text + "\n" +
 
@@ -54,7 +54,7 @@ alert("Skaner kodów\n" +
 
 }, function(error) {
 
-alert("Scanning failed: " + error);
+alert("Blad skanowania: " + error);
 
 });
 
@@ -91,7 +91,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     //
     function showAlert() {
         navigator.notification.alert(
-            'Dzia³a aplikacja !',  // message
+            'Dziaï¿½a aplikacja !',  // message
             alertDismissed,         // callback
             'Game Over',            // title
             'OKej'                  // buttonName
@@ -107,7 +107,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 <body onload="init();" id="stage" class="theme">
 
 <h1>PhoneGap Skaner!</h1>
-<h2>Skaner kodów kreskowych</h2>
+<h2>Skaner kodï¿½w kreskowych</h2>
 <p>
 <a href="#" class="btn large" onclick="scan();">Skanuj</a>
 <a href="#" class="btn large" onclick="showAlert();">Test</a></p>
