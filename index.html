@@ -1,0 +1,120 @@
+<html>
+
+<head>
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2">
+
+<title>PhoneGap</title>
+
+<link rel="stylesheet" href="css/master.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="barcodescanner.js"></script>
+<script type="text/javascript" src="childbrowser.js"></script>
+<script type="text/javascript" charset="utf-8">
+function init(){
+
+console.log("GOT AN ONLOAD!!!")
+
+document.addEventListener("touchmove", preventBehavior, false);
+
+document.addEventListener("deviceready", deviceInfo, true);
+
+}
+
+var preventBehavior = function(e) {
+
+e.preventDefault();
+
+};
+
+var deviceInfo = function(){
+
+console.log("In deviceInfo!");
+
+document.getElementById("platform").innerHTML = device.platform;
+
+document.getElementById("version").innerHTML = device.version;
+
+document.getElementById("uuid").innerHTML = device.uuid;
+
+}
+
+function scan() {
+
+window.plugins.barcodeScanner.scan(function(result) {
+
+alert("Skaner kodów\n" +
+
+"Wynik: " + result.text + "\n" +
+
+"Format: " + result.format);
+
+}, function(error) {
+
+alert("Scanning failed: " + error);
+
+});
+
+}
+
+function encode(type, data) {
+
+window.plugins.barcodeScanner.encode(type, data, function(result) {
+
+alert("encode success: " + result);
+
+}, function(error) {
+
+alert("encoding failed: " + error);
+
+});
+
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        // Empty
+    }
+
+    // alert dialog dismissed
+    function alertDismissed() {
+        // do something
+    }
+
+    // Show a custom alertDismissed
+    //
+    function showAlert() {
+        navigator.notification.alert(
+            'Działa aplikacja !',  // message
+            alertDismissed,         // callback
+            'Game Over',            // title
+            'OKej'                  // buttonName
+        );
+    }
+
+
+
+</script>
+
+</head>
+
+<body onload="init();" id="stage" class="theme">
+
+<h1>PhoneGap Skaner!</h1>
+<h2>Skaner kodów kreskowych</h2>
+<p>
+<a href="#" class="btn large" onclick="scan();">Skanuj</a>
+<a href="#" class="btn large" onclick="showAlert();">Test</a></p>
+
+<h2></h2>
+<center><img src="img/qua.jpeg" alt="qua.jpeg" width="256" height="80" /></center>
+
+</body>
+
+</html>
